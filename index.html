@@ -24,6 +24,7 @@
   --ink:#1c1c1c; --muted:#5c5c5c; --bg:#ffffff; --bg-soft:#f4f4f4; --line:#dcdcdc;
   --dark:#171717; --dark-2:#202020; --dark-line:#343434; --grey:#a8a8a8;
   --on-dark:#f5f5f5; --on-dark-muted:#c6c6c6;
+  --ok:#2f6f4f; --cta:#FFC83D; --cta-hover:#FFD666;
   --serif:"Bodoni Moda","Playfair Display",Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
   --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --wrap:1180px;
@@ -34,12 +35,12 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --ink:#f2f2f2; --muted:#b9b9b9; --bg:#0f0f0f; --bg-soft:#171717; --line:#2f2f2f;
-    --dark:#1c1c1d; --dark-2:#252526; --dark-line:#3a3a3b;
+    --dark:#1c1c1d; --dark-2:#252526; --dark-line:#3a3a3b; --ok:#6fbf94;
   }
 }
 :root[data-theme="dark"]{
   --ink:#f2f2f2; --muted:#b9b9b9; --bg:#0f0f0f; --bg-soft:#171717; --line:#2f2f2f;
-  --dark:#1c1c1d; --dark-2:#252526; --dark-line:#3a3a3b;
+  --dark:#1c1c1d; --dark-2:#252526; --dark-line:#3a3a3b; --ok:#6fbf94;
 }
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -48,6 +49,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font
 img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{width:min(var(--wrap),100% - 56px);margin-inline:auto}
+em,i,cite,blockquote,figcaption{font-style:normal}
+strong,b{font-weight:600}
 h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em}
 :focus-visible{outline:2px solid currentColor;outline-offset:3px}
 .skip{position:absolute;left:-999px;top:8px;background:#fff;color:#1c1c1c;padding:8px 14px;z-index:100}
@@ -63,15 +66,19 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
 .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:15px;padding:13px 24px;border:1px solid transparent;border-radius:2px;transition:background .2s,color .2s,border-color .2s;cursor:pointer}
 .btn-light{background:#fff;color:#1c1c1c}
 .btn-light:hover{background:#e6e6e6}
+.btn-cta{background:var(--cta);color:#1c1c1c;font-weight:700;font-size:16px;padding:16px 28px;box-shadow:0 8px 28px rgba(255,200,61,.22)}
+.btn-cta:hover{background:var(--cta-hover)}
+.top .btn.btn-cta{padding:10px 18px;font-size:14px;box-shadow:none}
 .btn-line{border-color:var(--grey);color:var(--on-dark)}
 .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.06)}
 .top .btn{padding:9px 18px;font-size:14px}
 
 /* Hero */
-.hero{background:var(--dark);color:var(--on-dark);padding:clamp(72px,11vw,148px) 0 clamp(88px,12vw,168px);overflow:hidden}
+.hero{background:var(--dark);color:var(--on-dark);padding:clamp(48px,6vw,88px) 0 clamp(80px,11vw,152px);overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(40px,6vw,96px);align-items:center}
-.hero h1{font-size:clamp(2.4rem,5vw,4.3rem);line-height:1.08;max-width:17ch}
-.hero .lead{font-size:clamp(1.05rem,1.6vw,1.22rem);color:var(--on-dark-muted);max-width:52ch;margin:34px 0 0}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.7rem);line-height:1.08;max-width:17ch}
+.hero .sub{font-size:clamp(1.15rem,1.9vw,1.45rem);line-height:1.5;color:var(--on-dark);max-width:36ch;margin:30px 0 0}
+.hero .lead{font-size:clamp(1.05rem,1.6vw,1.22rem);color:var(--on-dark-muted);max-width:52ch;margin:22px 0 0}
 .hero .cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
 .hero .facts{margin:72px 0 0;padding:20px 0 0;border-top:1px solid var(--dark-line);display:flex;flex-wrap:wrap;gap:8px 32px;font-size:14px;color:var(--grey);list-style:none}
 .hero .facts li{margin:0}
@@ -104,7 +111,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
 .pains .link{display:inline-block;margin-top:34px;font-weight:600;text-underline-offset:5px}
 .pain{padding:42px 0;border-top:1px solid var(--line)}
 .pain:last-child{border-bottom:1px solid var(--line)}
-.pain blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.2vw,1.65rem);line-height:1.3;font-weight:400}
+.pain blockquote{margin:0;font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.65rem);line-height:1.35;font-weight:400}
 .pain p{margin:20px 0 0;color:var(--muted);max-width:56ch}
 .pain p strong{color:var(--ink);font-weight:600}
 
@@ -114,6 +121,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
 .services .intro{color:var(--on-dark-muted)}
 .start{margin-top:56px;padding:34px 36px;background:var(--dark-2);border:1px solid var(--dark-line)}
 .start h3{font-size:1.35rem;line-height:1.2}
+.start p strong{color:var(--on-dark)}
 .start p{margin:12px 0 0;font-size:15px;color:var(--on-dark-muted)}
 .start ul{margin:20px 0 0;padding:0;list-style:none;font-size:15px}
 .start li{padding:12px 0;border-top:1px solid var(--dark-line)}
@@ -125,7 +133,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
 .svc[open] summary::after{transform:rotate(45deg);color:#fff}
 .svc summary:hover{color:#fff}
 .svc .body{padding:0 0 40px;max-width:58ch}
-.svc .body p{margin:0 0 20px;color:var(--on-dark-muted);font-style:italic}
+.svc .body p{margin:0 0 20px;color:var(--on-dark-muted)}
+.svc .body p strong{color:var(--on-dark)}
+.svc .tool{margin-top:26px;padding-top:20px;border-top:1px solid var(--dark-line);font-size:15px;color:var(--on-dark-muted);max-width:58ch}
+.svc .tool .k{display:block;color:var(--grey);font-size:13.5px;margin-bottom:6px}
+.svc .tool strong{color:var(--on-dark)}
 .svc .body ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;font-size:15.5px}
 .svc .body li{padding-left:16px;position:relative}
 .svc .body li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:1px;background:var(--grey)}
@@ -134,7 +146,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
 .proof{background:var(--bg-soft)}
 .proof .top-row{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:64px}
 .quote{border:1px dashed var(--line);padding:clamp(32px,4vw,56px);background:var(--bg)}
-.quote blockquote{margin:0;font-family:var(--serif);font-style:italic;font-weight:400;line-height:1.3}
+.quote blockquote{margin:0;font-family:var(--serif);font-weight:400;line-height:1.35}
 .quote.big blockquote{font-size:clamp(1.5rem,3vw,2.3rem)}
 .quote.small blockquote{font-size:clamp(1.15rem,1.8vw,1.35rem)}
 .quote figcaption{margin-top:22px;font-size:14.5px;color:var(--muted);display:flex;gap:14px;align-items:center}
@@ -198,6 +210,33 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
 .photo.person figcaption b{display:block;font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--on-dark)}
 @media (max-width:980px){ .band .photo{aspect-ratio:4/3} }
 
+
+/* Projetos reais */
+.cases .head{max-width:60ch;margin-bottom:72px}
+.cases .head p{color:var(--muted);margin-top:18px}
+.case{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,104px);align-items:center;padding:clamp(48px,7vw,88px) 0;border-top:1px solid var(--line)}
+.case:last-child{border-bottom:1px solid var(--line)}
+.case.rev .media{order:2}
+.case .media{margin:0}
+.case .media svg{display:block;width:100%;height:auto}
+.case .media img{display:none;width:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.case .media.has-photo img{display:block}
+.case .media.has-photo svg,.case .media.has-photo figcaption{display:none}
+.case .media figcaption{font-size:13px;color:var(--muted);margin-top:12px}
+.case h3{font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.2;margin-bottom:30px}
+.blk{padding:22px 0;border-top:1px solid var(--line)}
+.blk b{display:block;font-size:14px;color:var(--muted);margin-bottom:8px}
+.blk p{max-width:52ch}
+.c-card{fill:var(--bg-soft);stroke:var(--line)}
+.c-box{fill:var(--bg);stroke:var(--ink);stroke-width:1.4}
+.c-line{fill:none;stroke:var(--ink);stroke-width:1.4}
+.c-soft{fill:none;stroke:var(--grey);stroke-width:1.4;stroke-dasharray:5 5}
+.c-t{fill:var(--ink);font:500 12px var(--sans)}
+.c-m{fill:var(--muted);font:500 11.5px var(--sans)}
+.c-bar{fill:var(--ink)}
+.c-bar-ok{fill:var(--ok)}
+@media (max-width:980px){ .case{grid-template-columns:1fr} .case.rev .media{order:0} }
+
 /* Responsive */
 @media (max-width:980px){
   .hero .wrap,.pains .wrap,.services .wrap,.contact .wrap{grid-template-columns:1fr}
@@ -223,10 +262,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
     <nav aria-label="Principal">
       <a href="#desafios">Desafios</a>
       <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
       <a href="#depoimentos" hidden>Depoimentos</a>
       <a href="#contato">Contato</a>
     </nav>
-    <a class="btn btn-light" href="#contato">Fale conosco</a>
+    <a class="btn btn-cta" id="cta-top" href="#contato">Auditoria gratuita</a>
   </div>
 </header>
 
@@ -235,9 +275,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
   <div class="wrap">
     <div>
       <h1 id="h-hero">Uma base de TI segura e previsível para a sua empresa crescer.</h1>
-      <p class="lead">A Tavini planeja, implanta e mantém a infraestrutura que sustenta a sua operação, reduzindo o risco de paradas e de perda de dados, com escopo, prazos e investimento definidos desde o início.</p>
+      <p class="sub">Especialistas em <strong>infraestrutura segura e de alto desempenho</strong> para empresas de <strong>20 a 200 colaboradores</strong>.</p>
+      <p class="lead">A Tavini planeja, implanta e mantém a infraestrutura que sustenta a sua operação, reduzindo o <strong>risco de paradas e de perda de dados</strong>, com escopo, prazos e investimento definidos desde o início.</p>
       <div class="cta">
-        <a class="btn btn-light" href="#contato">Agendar uma conversa</a>
+        <a class="btn btn-cta" id="cta-hero" href="#contato">Solicite uma Auditoria de Rede Gratuita</a>
         <a class="btn btn-line" href="#servicos">Conhecer os serviços</a>
       </div>
       <ul class="facts">
@@ -301,27 +342,27 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
     <div>
       <article class="pain">
         <blockquote>“Temos backup, mas ninguém garante que ele funcione no dia em que precisarmos.”</blockquote>
-        <p><strong>Como apoiamos:</strong> verificamos se os dados realmente podem ser recuperados e entregamos um relatório de riscos com plano de ação.</p>
+        <p><strong>Como apoiamos:</strong> verificamos se os dados realmente podem ser recuperados e entregamos um <strong>relatório de riscos</strong> com plano de ação.</p>
       </article>
       <article class="pain">
         <blockquote>“Precisamos renovar a infraestrutura sem interromper a operação.”</blockquote>
-        <p><strong>Como apoiamos:</strong> planejamos a transição em etapas, em horários combinados e com plano de retorno, para reduzir o risco.</p>
+        <p><strong>Como apoiamos:</strong> planejamos a transição em etapas, em horários combinados e com <strong>plano de retorno</strong>, para reduzir o risco.</p>
       </article>
       <article class="pain">
         <blockquote>“Não temos clareza de quem tem acesso a quê dentro da empresa.”</blockquote>
-        <p><strong>Como apoiamos:</strong> revisamos e organizamos acessos e permissões, com regras claras e responsáveis definidos.</p>
+        <p><strong>Como apoiamos:</strong> revisamos e organizamos <strong>acessos e permissões</strong>, com regras claras e responsáveis definidos.</p>
       </article>
       <article class="pain">
         <blockquote>“Dependemos de sistemas antigos que só uma pessoa conhece.”</blockquote>
-        <p><strong>Como apoiamos:</strong> documentamos o ambiente, reduzimos a dependência de pessoas-chave e modernizamos com segurança.</p>
+        <p><strong>Como apoiamos:</strong> documentamos o ambiente, reduzimos a dependência de pessoas-chave e <strong>modernizamos com segurança</strong>.</p>
       </article>
       <article class="pain">
         <blockquote>“Os custos de nuvem crescem e não sabemos pelo que estamos pagando.”</blockquote>
-        <p><strong>Como apoiamos:</strong> levantamos o que está em uso, ajustamos o dimensionamento e trazemos previsibilidade ao gasto.</p>
+        <p><strong>Como apoiamos:</strong> levantamos o que está em uso, ajustamos o dimensionamento e trazemos <strong>previsibilidade ao gasto</strong>.</p>
       </article>
       <article class="pain">
         <blockquote>“As paradas na rede afetam a equipe e ninguém explica a causa.”</blockquote>
-        <p><strong>Como apoiamos:</strong> identificamos a origem das falhas, corrigimos e entregamos documentação para a gestão acompanhar.</p>
+        <p><strong>Como apoiamos:</strong> identificamos a origem das falhas, corrigimos e entregamos <strong>documentação</strong> para a gestão acompanhar.</p>
       </article>
     </div>
   </div>
@@ -355,54 +396,115 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
         <figcaption>Ilustração de painel de monitoramento.</figcaption>
       </figure>
       <div class="start">
-        <h3>Comece por um diagnóstico de valor fechado</h3>
-        <p>Preço definido no escopo. Se o projeto avançar, o valor pode ser abatido.</p>
+        <h3>Comece por uma auditoria de rede gratuita</h3>
+        <p>Uma análise inicial, <strong>sem custo e sem compromisso</strong>. Se fizer sentido, avançamos para um diagnóstico aprofundado, com escopo e valor fechados.</p>
         <ul>
-          <li>Teste de recuperação de dados, com relatório de riscos</li>
-          <li>Revisão de acessos e permissões</li>
-          <li>Plano de migração, com prazos e custos</li>
-          <li>Diagnóstico de rede e Wi-Fi</li>
+          <li>Mapeamento da rede e dos equipamentos</li>
+          <li>Riscos de segurança e pontos de instabilidade</li>
+          <li>Resumo com as prioridades de correção</li>
+          <li>Próximos passos, se você quiser avançar</li>
         </ul>
       </div>
     </div>
     <div>
       <details class="svc" name="svc" open>
         <summary>Proteção e recuperação de dados</summary>
-        <div class="body"><p>Continuidade do negócio diante de falhas, erros ou ataques.</p>
-          <ul><li>Política de cópias de segurança alinhada ao risco</li><li>Verificação periódica da recuperação dos dados</li><li>Plano de recuperação após incidentes</li><li>Relatórios claros para a gestão</li></ul></div>
+        <div class="body"><p><strong>Continuidade do negócio</strong> diante de falhas, erros ou ataques.</p>
+          <ul><li>Política de cópias de segurança alinhada ao risco</li><li>Verificação periódica da recuperação dos dados</li><li>Plano de recuperação após incidentes</li><li>Relatórios claros para a gestão</li></ul>
+          <p class="tool"><span class="k">Método</span>Arquitetura 3-2-1. <strong>Continuidade:</strong> seus dados protegidos em três cópias, em dois tipos de mídia e uma delas fora do local.</p></div>
       </details>
       <details class="svc" name="svc">
         <summary>Migrações e modernização</summary>
-        <div class="body"><p>Mudança de ambiente com risco controlado.</p>
-          <ul><li>Levantamento e planejamento com cronograma</li><li>Transição de servidores e serviços, locais ou em nuvem</li><li>Execução em horários que preservam a operação</li><li>Plano de retorno e documentação final</li></ul></div>
+        <div class="body"><p>Mudança de ambiente com <strong>risco controlado</strong>.</p>
+          <ul><li>Levantamento e planejamento com cronograma</li><li>Transição de servidores e serviços, locais ou em nuvem</li><li>Execução em horários que preservam a operação</li><li>Plano de retorno e documentação final</li></ul>
+          <p class="tool"><span class="k">Ferramentas</span>VMware, Hyper-V e Proxmox. <strong>Transição segura:</strong> migramos os servidores com plano de retorno, para a sua equipe continuar trabalhando.</p></div>
       </details>
       <details class="svc" name="svc">
         <summary>Gestão de acessos e identidades</summary>
-        <div class="body"><p>Cada pessoa com o acesso certo, e registro de quem pode o quê.</p>
-          <ul><li>Organização do Active Directory, usuários e permissões</li><li>Políticas de segurança padronizadas</li><li>Integração com serviços em nuvem</li><li>Redução do risco de acessos indevidos</li></ul></div>
+        <div class="body"><p>Cada pessoa com o <strong>acesso certo</strong>, e registro de quem pode o quê.</p>
+          <ul><li>Organização do Active Directory, usuários e permissões</li><li>Políticas de segurança padronizadas</li><li>Integração com serviços em nuvem</li><li>Redução do risco de acessos indevidos</li></ul>
+          <p class="tool"><span class="k">Ferramentas</span>Active Directory e GPO. <strong>Controle:</strong> cada acesso rastreável, com menos risco de uso indevido.</p></div>
       </details>
       <details class="svc" name="svc">
         <summary>Servidores Windows e Linux</summary>
-        <div class="body"><p>Ambientes estáveis, atualizados e documentados.</p>
-          <ul><li>Implantação e configuração seguras</li><li>Atualizações e correções planejadas</li><li>Manutenção preventiva</li><li>Documentação atualizada do ambiente</li></ul></div>
+        <div class="body"><p>Ambientes <strong>estáveis</strong>, atualizados e documentados.</p>
+          <ul><li>Implantação e configuração seguras</li><li>Atualizações e correções planejadas</li><li>Manutenção preventiva</li><li>Documentação atualizada do ambiente</li></ul>
+          <p class="tool"><span class="k">Ferramentas</span>Windows Server, Debian, Ubuntu e Rocky Linux. <strong>Estabilidade:</strong> menos paradas e menos dependência de uma única pessoa.</p></div>
       </details>
       <details class="svc" name="svc">
         <summary>Nuvem e virtualização</summary>
-        <div class="body"><p>Uso eficiente de recursos, com custo sob controle.</p>
-          <ul><li>Ambientes virtualizados, locais ou em nuvem</li><li>Arquitetura híbrida</li><li>Dimensionamento conforme a demanda real</li><li>Acompanhamento de custos</li></ul></div>
+        <div class="body"><p>Uso <strong>eficiente</strong> de recursos, com custo sob controle.</p>
+          <ul><li>Ambientes virtualizados, locais ou em nuvem</li><li>Arquitetura híbrida</li><li>Dimensionamento conforme a demanda real</li><li>Acompanhamento de custos</li></ul>
+          <p class="tool"><span class="k">Ferramentas</span>VMware, Hyper-V, Proxmox e AWS. <strong>Eficiência:</strong> mais serviços no mesmo hardware, custo menor e recuperação mais rápida.</p></div>
       </details>
       <details class="svc" name="svc">
         <summary>Redes e conectividade</summary>
-        <div class="body"><p>Conexões confiáveis para as equipes e para os sistemas.</p>
-          <ul><li>Projeto da rede e separação por área</li><li>Acesso remoto seguro para equipes e unidades</li><li>Diagnóstico de instabilidades</li><li>Documentação técnica atualizada</li></ul></div>
+        <div class="body"><p>Conexões <strong>confiáveis</strong> para as equipes e para os sistemas.</p>
+          <ul><li>Projeto da rede e separação por área</li><li>Acesso remoto seguro para equipes e unidades</li><li>Diagnóstico de instabilidades</li><li>Documentação técnica atualizada</li></ul>
+          <p class="tool"><span class="k">Ferramentas</span>FortiGate, pfSense, Sophos, MikroTik, UniFi e Cisco. <strong>Segurança e estabilidade:</strong> rede protegida e organizada, com menos quedas e acessos controlados.</p></div>
       </details>
       <details class="svc" name="svc">
         <summary>Monitoramento de equipamentos (NOC)</summary>
-        <div class="body"><p>Alertas antes que a falha vire parada ou perda.</p>
-          <ul><li>Painéis em tempo real e histórico</li><li>Alertas no celular do responsável</li><li>Câmaras frias, nobreaks, servidores e links</li><li>Relatórios claros para a gestão</li></ul></div>
+        <div class="body"><p><strong>Alertas</strong> antes que a falha vire parada ou perda.</p>
+          <ul><li>Painéis em tempo real e histórico</li><li>Alertas no celular do responsável</li><li>Câmaras frias, nobreaks, servidores e links</li><li>Relatórios claros para a gestão</li></ul>
+          <p class="tool"><span class="k">Ferramentas</span>Zabbix, Grafana e Graylog. <strong>Monitoramento proativo:</strong> identificamos e resolvemos gargalos antes que sua operação pare.</p></div>
       </details>
       <figure class="photo side"><img src="atendimento.jpg" alt="Profissional de TI trabalhando com notebook em uma sala de servidores" width="1200" height="900" decoding="async"></figure>
     </div>
+  </div>
+</section>
+
+<section class="sec cases" id="projetos" aria-labelledby="h-cases">
+  <div class="wrap">
+    <div class="head"><h2 id="h-cases">Projetos reais</h2><p>Casos conduzidos pelo nosso fundador em ambientes de grande porte, com os nomes dos clientes preservados.</p></div>
+
+    <article class="case">
+      <figure class="media">
+        <svg viewBox="0 0 440 290" role="img" aria-label="Esquema do projeto: firewall separando as redes administrativa e de alunos em VLANs, e o tráfego ARP caindo de mais de 30% para cerca de 2%.">
+          <rect class="c-card" x="0.5" y="0.5" width="439" height="289" rx="14"/>
+          <rect class="c-box" x="170" y="22" width="100" height="36" rx="6"/><text class="c-t" x="220" y="45" text-anchor="middle">Firewall</text>
+          <path class="c-line" d="M200 58 V80 H110 V96"/><path class="c-line" d="M240 58 V80 H330 V96"/>
+          <rect class="c-box" x="36" y="96" width="148" height="36" rx="6"/><text class="c-t" x="110" y="119" text-anchor="middle">VLAN Administrativo</text>
+          <rect class="c-box" x="256" y="96" width="148" height="36" rx="6"/><text class="c-t" x="330" y="119" text-anchor="middle">VLAN Alunos</text>
+          <text class="c-m" x="36" y="172">Tráfego ARP na rede</text>
+          <text class="c-m" x="36" y="198">Antes</text><rect class="c-bar" x="92" y="186" width="250" height="16" rx="3"/><text class="c-t" x="350" y="199">mais de 30%</text>
+          <text class="c-m" x="36" y="232">Depois</text><rect class="c-bar-ok" x="92" y="220" width="17" height="16" rx="3"/><text class="c-t" x="118" y="233">cerca de 2%</text>
+        </svg>
+        <img src="caso-escola.jpg" alt="Projeto de rede em escola com mais de mil usuários" width="1200" height="900" decoding="async">
+        <figcaption>Esquema ilustrativo do projeto.</figcaption>
+      </figure>
+      <div>
+        <h3>Escola com mais de 1.000 usuários</h3>
+        <div class="blk"><b>Antes</b><p>Crise crítica de rede, com <strong>tempestade de broadcast</strong>, tráfego ARP acima de 30% e falhas de comunicação entre os equipamentos.</p></div>
+        <div class="blk"><b>Solução Tavini</b><p>Segmentação por <strong>VLANs</strong> no firewall e nos switches UniFi, separando o tráfego administrativo e o de alunos. Correção da configuração de rede dos servidores, plano de consolidação do <strong>Active Directory</strong> e arquitetura de <strong>backup 3-2-1</strong>.</p></div>
+        <div class="blk"><b>Resultado</b><p><strong>Tempestade de broadcast eliminada</strong> e tráfego ARP reduzido de <strong>mais de 30% para cerca de 2%</strong>, com a rede segmentada e o backup planejado.</p></div>
+      </div>
+    </article>
+
+    <article class="case rev">
+      <figure class="media">
+        <svg viewBox="0 0 440 290" role="img" aria-label="Esquema do projeto: redes de CFTV, administração e Wi-Fi público unificadas em uma arquitetura única, com monitoramento e logs centralizados.">
+          <rect class="c-card" x="0.5" y="0.5" width="439" height="289" rx="14"/>
+          <rect class="c-box" x="28" y="44" width="104" height="40" rx="6"/><text class="c-t" x="80" y="69" text-anchor="middle">CFTV</text>
+          <rect class="c-box" x="28" y="125" width="104" height="40" rx="6"/><text class="c-t" x="80" y="150" text-anchor="middle">Administração</text>
+          <rect class="c-box" x="28" y="206" width="104" height="40" rx="6"/><text class="c-t" x="80" y="231" text-anchor="middle">Wi-Fi público</text>
+          <path class="c-line" d="M132 64 H160 V135 H184"/><path class="c-line" d="M132 145 H184"/><path class="c-line" d="M132 226 H160 V155 H184"/>
+          <rect class="c-box" x="184" y="105" width="96" height="80" rx="8"/><text class="c-t" x="232" y="141" text-anchor="middle">Arquitetura</text><text class="c-t" x="232" y="158" text-anchor="middle">unificada</text>
+          <path class="c-soft" d="M280 125 H308 V84 H328"/><path class="c-soft" d="M280 165 H308 V206 H328"/>
+          <rect class="c-box" x="328" y="64" width="92" height="40" rx="6"/><text class="c-t" x="374" y="89" text-anchor="middle">Zabbix</text>
+          <rect class="c-box" x="328" y="186" width="92" height="40" rx="6"/><text class="c-t" x="374" y="211" text-anchor="middle">Graylog</text>
+          <text class="c-m" x="374" y="124" text-anchor="middle">monitoramento</text><text class="c-m" x="374" y="246" text-anchor="middle">logs centralizados</text>
+        </svg>
+        <img src="caso-operacao.jpg" alt="Projeto de rede unificada com CFTV, administração e Wi-Fi público" width="1200" height="900" decoding="async">
+        <figcaption>Esquema ilustrativo do projeto.</figcaption>
+      </figure>
+      <div>
+        <h3>Operação com CFTV, administração e Wi-Fi público</h3>
+        <div class="blk"><b>Antes</b><p>Redes <strong>separadas</strong> de CFTV, administração e Wi-Fi público de alta densidade, sem uma arquitetura unificada.</p></div>
+        <div class="blk"><b>Solução Tavini</b><p>Consolidação em <strong>duas fases</strong> em uma arquitetura única, com domínios de broadcast isolados, <strong>VLAN</strong> nativa padronizada nos switches das câmeras e monitoramento com <strong>Zabbix</strong> e logs centralizados no <strong>Graylog</strong>.</p></div>
+        <div class="blk"><b>Resultado</b><p><strong>Arquitetura unificada e padronizada</strong>, com segurança física e lógica aplicada e <strong>monitoramento proativo</strong> com logs centralizados.</p></div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -436,7 +538,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
       <h2>Vamos conversar?</h2>
       <p class="intro">Conte o cenário da sua empresa. Retornamos com uma proposta de próximos passos e, se fizer sentido, um diagnóstico com escopo e investimento definidos.</p>
       <div class="cta">
-        <a class="btn btn-light" id="cta-wa" href="#contato">Falar pelo WhatsApp</a>
+        <a class="btn btn-cta" id="cta-wa" href="#contato">Solicite uma Auditoria de Rede Gratuita</a>
         <a class="btn btn-line" id="cta-mail" href="#contato">Enviar e-mail</a>
       </div>
       <figure class="photo person"><div class="pic"><img src="marcos.jpg" alt="Marcos, fundador da Tavini TI" width="200" height="200" decoding="async"></div>
@@ -525,6 +627,17 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.01em
 </script>
 
 <script>
+/* Fotos dos projetos: se o arquivo existir, substitui o esquema ilustrativo */
+(function(){
+  [].forEach.call(document.querySelectorAll(".case .media img"), function(img){
+    var fig = img.closest(".media");
+    function ok(){ fig.classList.add("has-photo"); }
+    img.addEventListener("load", ok);
+    if (img.complete && img.naturalWidth > 0) ok();
+  });
+})();
+</script>
+<script>
 /* Fotos opcionais: mostra cada foto somente se o arquivo existir */
 (function(){
   [].forEach.call(document.querySelectorAll("figure.photo img"), function(img){
@@ -543,8 +656,9 @@ var CONTACT = { whatsapp: "(45) 99825-8504", email: "contato@tavinisolucoes.com.
     var wa = (CONTACT.whatsapp || "").replace(/\D/g, "");
     if (wa && wa.length <= 11) wa = "55" + wa;
     if (wa) {
-      var msg = encodeURIComponent("Olá, vim pelo site da Tavini TI e gostaria de conversar sobre a infraestrutura da minha empresa.");
+      var msg = encodeURIComponent("Olá, vim pelo site da Tavini TI e gostaria de solicitar a Auditoria de Rede Gratuita.");
       document.getElementById("cta-wa").href = "https://wa.me/" + wa + "?text=" + msg;
+      ["cta-hero","cta-top"].forEach(function(id){ var e = document.getElementById(id); if (e) e.href = document.getElementById("cta-wa").href; });
       document.getElementById("v-wa").innerHTML = '<a href="https://wa.me/' + wa + '">' + CONTACT.whatsapp + '</a>';
     }
     if (CONTACT.email) {
