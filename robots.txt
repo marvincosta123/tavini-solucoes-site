@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tavinisolucoes.com.br/sitemap.xml
